@@ -51,10 +51,76 @@ class MessagesEndpoint extends Data
     public static function test():  ClaudeCallResult
     {
         $convo = (new ConversationBuilder())
+            ->addText(ClaudeRole::ASSISTANT, 'Yes?')
+            ->addText(ClaudeRole::USER, 'What is the sky blue?')
+            ->render();
+
+        $system = (new SystemPromptBuilder())
+            ->addText('You are an astrophysicist. You don\'t have time for my small talk')
+            ->addText('Keep your answers to less than 20 words')
+            ->render();
+
+        return Claude::messages()
+            ->withApikey(Claude::api_key())
+            ->withAnthropicVersion(Claude::anthropic_version())
+            ->withModel("claude-sonnet-4-20250514")
+            ->withMaxTokens(500)
+            ->withSystemPrompt($system)
+            ->withTemperature(0.1125478)
+            ->withMessages($convo)
+            ->handle();
+    }
+
+    public static function test2():  ClaudeCallResult
+    {
+        $convo = (new ConversationBuilder())
             ->addText(ClaudeRole::ASSISTANT, 'Hi!?')
-            ->addText(ClaudeRole::USER, 'Say something funny with the echo tool.')
-            ->addToolRequest('toolu_01CnusTEc2xk9VZRnXmb3ZY4', 'echo', ["intended_output" => "Why don't scientists trust atoms? Because they make up everything! 🧪⚛️"])
-            ->addToolResult('toolu_01CnusTEc2xk9VZRnXmb3ZY4', "Why don't scientists trust atoms? Because they make up everything! 🧪⚛️")
+            ->addText(ClaudeRole::USER, 'Can you shut off the light for me?.')
+            ->render();
+
+        $system = (new SystemPromptBuilder())
+            ->addText('You love to use tools.')
+            ->render();
+
+        $tools = [
+            [
+                "name" => "lights_off",
+                "description" => "Turns off the user's lights.",
+                "input_schema" => [
+                    "type" => "object",
+                    "properties" => [
+                        "off" => [
+                            "type" => "boolean",
+                            "description" => "Set to true",
+                        ],
+                    ],
+                    "required" => [
+                        "off",
+                    ],
+                ],
+            ]
+        ];
+
+        return Claude::messages()
+            ->withApikey(Claude::api_key())
+            ->withAnthropicVersion(Claude::anthropic_version())
+            ->withModel("claude-sonnet-4-20250514")
+            ->withMaxTokens(500)
+            ->withSystemPrompt($system)
+            ->withTemperature(0.7)
+            ->withTools($tools)
+            ->withMessages($convo)
+            ->handle();
+    }
+
+    public static function test3():  ClaudeCallResult
+    {
+        $convo = (new ConversationBuilder())
+            ->addText(ClaudeRole::ASSISTANT, 'Hi!?')
+            ->addText(ClaudeRole::USER, 'Can you shut off the light for me?.')
+            ->addText(ClaudeRole::ASSISTANT, "I'll turn off the lights for you right away!")
+            ->addToolRequest('toolu_016RugRX9Da8p6URZVK3wrDb', 'lights_off', ["off" => true])
+            ->addToolResult('toolu_016RugRX9Da8p6URZVK3wrDb', "The lights have been shut off. Simply tell the user 'Booyah!'")
             ->render();
 
         $system = (new SystemPromptBuilder())
@@ -88,29 +154,6 @@ class MessagesEndpoint extends Data
             ->withSystemPrompt($system)
             ->withTemperature(0.7)
             ->withTools($tools)
-            ->withMessages($convo)
-            ->handle();
-    }
-
-    public static function test2():  ClaudeCallResult
-    {
-        $convo = (new ConversationBuilder())
-            ->addText(ClaudeRole::ASSISTANT, 'Yes?')
-            ->addText(ClaudeRole::USER, 'What is the sky blue?')
-            ->render();
-
-        $system = (new SystemPromptBuilder())
-            ->addText('You are an astrophysicist. You don\'t have time for my small talk')
-            ->addText('Keep your answers to less than 20 words')
-            ->render();
-
-        return Claude::messages()
-            ->withApikey(Claude::api_key())
-            ->withAnthropicVersion(Claude::anthropic_version())
-            ->withModel("claude-sonnet-4-20250514")
-            ->withMaxTokens(500)
-            ->withSystemPrompt($system)
-            ->withTemperature(0.1125478)
             ->withMessages($convo)
             ->handle();
     }
