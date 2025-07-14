@@ -2,8 +2,8 @@
 
 namespace LLMSpeak\Anthropic\Repositories;
 
-use LLMSpeak\Anthropic\Actions\AnthropicAPI\Messages\MessagesEndpoint;
 use LLMSpeak\Anthropic\Support\Facades\Claude;
+use LLMSpeak\Anthropic\Actions\AnthropicAPI\Messages\MessagesEndpoint;
 
 class ClaudeMessagesAPIRepository extends ClaudeAPIRepository
 {

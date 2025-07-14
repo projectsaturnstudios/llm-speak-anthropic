@@ -2,12 +2,7 @@
 
 namespace LLMSpeak\Anthropic;
 
-use LLMSpeak\Anthropic\Repositories\ClaudeAdminAPIRepository;
-use LLMSpeak\Anthropic\Repositories\ClaudeExperimentalAPIRepository;
-use LLMSpeak\Anthropic\Repositories\ClaudeFilesAPIRepository;
-use LLMSpeak\Anthropic\Repositories\ClaudeMessageBatchesAPIRepository;
 use LLMSpeak\Anthropic\Repositories\ClaudeMessagesAPIRepository;
-use LLMSpeak\Anthropic\Repositories\ClaudeModelsAPIRepository;
 
 class Anthropic
 {

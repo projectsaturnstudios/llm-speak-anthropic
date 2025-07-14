@@ -2,12 +2,12 @@
     "name": "llm-speak/anthropic-claude",
     "description": "A Laravel package for integrating Anthropic Claude into LLMSpeak",
     "type": "library",
-    "version": "0.3.0",
+    "version": "0.3.3",
     "license": "MIT",
     "authors": [
         {
             "name": "Project Saturn Studios, LLC",
-            "email": "info@prejectsaturnstudios.com"
+            "email": "info@projectsaturnstudios.com"
         }
     ],
     "require": {

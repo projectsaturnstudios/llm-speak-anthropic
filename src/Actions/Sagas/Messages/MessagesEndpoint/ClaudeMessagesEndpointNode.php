@@ -27,7 +27,7 @@ class ClaudeMessagesEndpointNode extends Node
     public function exec(mixed $prep_res): mixed
     {
         $response = Http::withHeaders($prep_res['headers'])->post($this->url, $prep_res['body']);
-        VarDumper::dump(['Claude Results - ClaudeMessagesEndpointNode', $response->json()]);
+        logger()->log('info', 'Claude Results - ClaudeMessagesEndpointNode', $response->json());
         return $response->json();
     }
 
