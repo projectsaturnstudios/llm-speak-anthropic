@@ -3,12 +3,11 @@
 namespace LLMSpeak\Anthropic\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use LLMSpeak\Anthropic\Anthropic;
 
 class AnthropicLLMSpeakServiceProvider extends ServiceProvider
 {
     protected array $config = [
-        'llms.services.anthropic' => __DIR__ .'/../../config/llms/anthropic.php',
+        'llms.providers.drivers.anthropic' => __DIR__ .'/../../config/anthropic.php',
     ];
 
     public function register(): void
@@ -19,13 +18,13 @@ class AnthropicLLMSpeakServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishConfigs();
-        Anthropic::boot();
+        //Anthropic::boot();
     }
 
     protected function publishConfigs() : void
     {
         $this->publishes([
-            $this->config['llms.services.anthropic'] => config_path('llms/anthropic.php'),
+            $this->config['llms.providers.drivers.anthropic'] => config_path('llms/anthropic.php'),
         ], ['llms', 'llms.anthropic']);
     }
 

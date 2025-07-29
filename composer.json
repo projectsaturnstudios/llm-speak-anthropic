@@ -2,7 +2,7 @@
     "name": "llm-speak/anthropic-claude",
     "description": "A Laravel package for integrating Anthropic Claude into LLMSpeak",
     "type": "library",
-    "version": "0.3.3",
+    "version": "0.4.1",
     "license": "MIT",
     "authors": [
         {
