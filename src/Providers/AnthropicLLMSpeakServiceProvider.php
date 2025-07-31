@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class AnthropicLLMSpeakServiceProvider extends ServiceProvider
 {
     protected array $config = [
-        'llms.providers.drivers.anthropic' => __DIR__ .'/../../config/anthropic.php',
+        'llms.chat-providers.drivers.anthropic' => __DIR__ .'/../../config/anthropic.php',
     ];
 
     public function register(): void
@@ -24,7 +24,7 @@ class AnthropicLLMSpeakServiceProvider extends ServiceProvider
     protected function publishConfigs() : void
     {
         $this->publishes([
-            $this->config['llms.providers.drivers.anthropic'] => config_path('llms/anthropic.php'),
+            $this->config['llms.chat-providers.drivers.anthropic'] => config_path('llms/anthropic.php'),
         ], ['llms', 'llms.anthropic']);
     }
 

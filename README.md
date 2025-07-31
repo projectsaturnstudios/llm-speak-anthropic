@@ -7,7 +7,7 @@
 
 **LLMSpeak Anthropic Claude** is a Laravel package that provides a fluent, Laravel-native interface for integrating with Anthropic's Claude AI models. Built as part of the LLMSpeak ecosystem, it offers seamless integration with Laravel applications through automatic service discovery and expressive request builders.
 
-> **Note:** This package is part of the larger [LLMSpeak ecosystem](https://github.com/projectsaturnstudios/llm-speak). For universal provider switching and standardized interfaces, check out the [LLMSpeak Core](https://github.com/projectsaturnstudios/llm-speak-core) package.
+> **Note:** This package is part of the larger [LLMSpeak ecosystem](https://github.com/projectsaturnstudios/llm-speak). For universal provider switching and standardized interfaces, check out the [LLMSpeak Core](https://github.com/projectsaturnstudios/llm-speak) package.
 
 ## Table of Contents
 - [Features](#features)

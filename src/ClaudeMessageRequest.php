@@ -66,7 +66,7 @@ class ClaudeMessageRequest extends Data
     )
     {
         $this->api_key = env('ANTHROPIC_API_KEY');
-        $this->url = config('llms.providers.drivers.anthropic.base_url')."/messages";
+        $this->url = config('llms.chat-providers.drivers.anthropic.base_url')."/messages";
     }
 
     /**
